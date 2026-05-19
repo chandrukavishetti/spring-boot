@@ -14,4 +14,9 @@ public interface EmployeeDAO {
 	public List<Employee> findByAge(Integer age);
 
 	public List<Employee> findByName(String name);
+
+	public List<Employee> findByCityCode(Integer code);
+
+	public List<Employee> findBySalary(Float salary);
+
 }

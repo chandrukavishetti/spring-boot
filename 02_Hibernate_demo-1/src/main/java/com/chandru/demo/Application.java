@@ -25,8 +25,28 @@ public class Application {
 			// readEmployee(employeeDao);
 			// findAllEmplyees(employeeDao);
 			// readByAge(employeeDao);
-			readByName(employeeDao);
+			// readByName(employeeDao);
+			// readByCityCode(employeeDao);
+			readBySalary(employeeDao);
 		};
+	}
+
+	private void readBySalary(EmployeeDAO employeeDao) {
+		System.out.println("Fetching the Employees based on the salary");
+
+		List<Employee> foundEmployees = employeeDao.findBySalary(100000f);
+
+		System.out.println("Foud employees are : " + foundEmployees);
+
+	}
+
+	private void readByCityCode(EmployeeDAO employeeDao) {
+		System.out.println("Fetching the employees by the city code");
+
+		List<Employee> foundEmployees = employeeDao.findByCityCode(200426);
+
+		System.out.println("fouded students : " + foundEmployees);
+
 	}
 
 	private void createEmployee(EmployeeDAO employeeDao) {
