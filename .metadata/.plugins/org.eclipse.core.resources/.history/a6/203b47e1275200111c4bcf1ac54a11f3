@@ -1,0 +1,5 @@
+package com.chandru.demo.DAO;
+
+public interface StudentDAO {
+
+}

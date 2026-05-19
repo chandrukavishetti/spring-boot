@@ -1,0 +1,8 @@
+package com.chandru.demo.DAO;
+
+import com.chandru.demo.model.Student;
+
+public interface StudentDAO {
+
+	public void save(Student theStudent);
+}

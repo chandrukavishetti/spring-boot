@@ -1,0 +1,12 @@
+package com.chandru.demo.model;
+
+import org.springframework.context.annotation.Primary;
+
+public class VollyBallCoach implements ICoach {
+	@Override
+	@Primary
+	public String getDailyWorkOut() {
+		return "practice defecing and smashing in vollyball";
+	}
+
+}

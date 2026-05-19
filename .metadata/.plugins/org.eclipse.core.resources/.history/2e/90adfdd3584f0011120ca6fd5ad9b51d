@@ -1,0 +1,29 @@
+package com.chandru.demo.model;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DemoController {
+
+	// @Autowired
+	private ICoach mycoach;
+
+	// constructor injection
+	@Autowired
+	public DemoController(@Qualifire ("footballCoach")ICoach coach) {
+		mycoach = coach;
+	}
+
+//	// setter injection
+//	@Autowired
+//	public void setCoach(ICoach coach) {
+//		mycoach = coach;
+//	}
+
+	@GetMapping("/dailyworkout")
+	public String getDailyWorkoutResult() {
+		return mycoach.getDailyWorkOut();
+	}
+}

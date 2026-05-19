@@ -1,0 +1,5 @@
+package com.chandru.demo.model;
+
+public class CricketCoach {
+
+}

@@ -1,0 +1,47 @@
+package com.chandru.demo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.chandru.demo.DAO.EmployeeDAO;
+import com.chandru.demo.model.Employee;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner commandlinerunner(EmployeeDAO employeeDao) {
+
+		return runner -> {
+			createEmployee(employeeDao);
+		};
+	}
+
+	private void createEmployee(EmployeeDAO employeeDao) {
+
+		try {
+
+			System.out.println("Creating the new Employee object");
+
+			Employee tempEmp = new Employee(1, "chandrashekhar", "Gurgaon", 200426, 400000, 22);
+
+			System.out.println("Saving the employee data");
+
+			employeeDao.save(tempEmp);
+
+			System.out.println("Employee saved successfully");
+
+		} catch (Exception e) {
+
+			System.out.println("Unique id is required");
+
+			e.printStackTrace();
+		}
+	}
+}

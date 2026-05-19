@@ -1,0 +1,17 @@
+127.0.0.1 - - [11/May/2026:13:35:51 +0530] "GET / HTTP/1.1" 404 752
+127.0.0.1 - - [11/May/2026:13:36:39 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:36:39 +0530] "GET /Cookies-and-Sessions/onlineshopping2/productlist.html HTTP/1.1" 200 1124
+127.0.0.1 - - [11/May/2026:13:39:50 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:39:51 +0530] "GET /ServletAssignment/OnlineExamResult3/index.html HTTP/1.1" 200 445
+127.0.0.1 - - [11/May/2026:13:43:55 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:43:59 +0530] "GET /ServletAssignment/OnlineExamResult3/examForm.jsp HTTP/1.1" 200 1237
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:44:32 +0530] "POST /ServletAssignment/onlineexam HTTP/1.1" 404 784
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:58:22 +0530] "POST /ServletAssignment/onlineexam HTTP/1.1" 404 784
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:58:26 +0530] "POST /ServletAssignment/onlineexam HTTP/1.1" 404 784
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:58:35 +0530] "GET /ServletAssignment/onlineexam HTTP/1.1" 404 784
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:58:40 +0530] "GET /ServletAssignment/onlineexam HTTP/1.1" 404 784
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:58:40 +0530] "GET /ServletAssignment/onlineexam HTTP/1.1" 404 784
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:58:44 +0530] "GET /ServletAssignment/OnlineExamResult3/index.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:58:44 +0530] "GET /ServletAssignment/OnlineExamResult3/index.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [11/May/2026:13:58:45 +0530] "GET /ServletAssignment/OnlineExamResult3/index.html HTTP/1.1" 304 -
+127.0.0.1 - - [11/May/2026:21:11:40 +0530] "GET / HTTP/1.1" 404 752

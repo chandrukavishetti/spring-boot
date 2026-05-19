@@ -1,0 +1,14 @@
+package com.chandru.demo.model;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component
+@Primary
+public class DiesealEngine implements Engine {
+
+	public String getEngine() {
+		return "dieseal engine needs to add dieseal";
+	}
+
+}

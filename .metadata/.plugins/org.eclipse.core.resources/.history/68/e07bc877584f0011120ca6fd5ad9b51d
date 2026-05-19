@@ -1,0 +1,10 @@
+package com.chandru.demo.model;
+
+public class BadmintonCoach implements ICoach {
+
+	@Override
+	public String getDailyWorkOut() {
+		return "practice smashing and service";
+	}
+
+}

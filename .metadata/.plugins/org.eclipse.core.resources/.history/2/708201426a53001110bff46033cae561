@@ -1,0 +1,64 @@
+package com.chandru.demo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.chandru.demo.DAO.EmployeeDAO;
+import com.chandru.demo.model.Employee;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner commandlinerunner(EmployeeDAO employeeDao) {
+
+		return runner -> {
+			// createEmployee(employeeDao);
+			readEmployee(employeeDao);
+		};
+	}
+
+	private void createEmployee(EmployeeDAO employeeDao) {
+
+		try {
+
+			System.out.println("Creating the new Employee object");
+
+			Employee tempEmp1 = new Employee(1, "chandrashekhar", "Gurgaon", 200426, 400000, 22);
+			Employee tempEmp2 = new Employee(2, "pruthviraj", "Bidadi", 202005, 300000, 20);
+			Employee tempEmp3 = new Employee(3, "kartik", "vijayapur", 302004, 300000, 21);
+			Employee tempEmp4 = new Employee(4, "deepak", "Mumbai", 302003, 90000, 22);
+			Employee tempEmp5 = new Employee(5, "Adappayyaswami", "Hubli", 202002, 16000, 24);
+
+			System.out.println("Saving the employee data");
+
+			employeeDao.save(tempEmp1);
+			employeeDao.save(tempEmp2);
+			employeeDao.save(tempEmp3);
+			employeeDao.save(tempEmp4);
+			employeeDao.save(tempEmp5);
+
+			System.out.println("Employee saved successfully");
+
+		} catch (Exception e) {
+
+			System.out.println("Unique id is required");
+
+			e.printStackTrace();
+		}
+	}
+
+	private void readEmployee(EmployeeDAO employeeDao) {
+		System.out.println("fetching the employees from the database");
+
+		Employee foundEmployee = employeeDao.findById(1);
+
+		System.out.println("found the student : " + foundEmployee);
+	}
+}

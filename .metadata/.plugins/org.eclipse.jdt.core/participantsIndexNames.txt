@@ -1,0 +1,11 @@
+INDEX VERSION 1.134
+D:\monocept spring boot\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1846838372.index
+\Cookies-and-Sessions\src\main\java
+D:\monocept spring boot\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3895194509.index
+\Cookies-and-Sessions\src\main\java
+D:\monocept spring boot\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1114811418.index
+\ServletAssignment\src\main\java
+D:\monocept spring boot\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1728220465.index
+\ServletAssignment\src\main\java
+D:\monocept spring boot\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1572861586.index
+\ServletAssignment\src\main\java

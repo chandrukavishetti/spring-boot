@@ -1,0 +1,18 @@
+package com.chandru.demo.DAO;
+
+import org.springframework.stereotype.Repository;
+
+import com.chandru.demo.model.Employee;
+
+import jakarta.persistence.EntityManager;
+
+@Repository
+public class EmployeeDaoImpl implements EmployeeDAO {
+	private EntityManager entitymanager;
+
+	@Override
+	public void save(Employee employee) {
+		entitymanager.persist(employee);
+	}
+
+}

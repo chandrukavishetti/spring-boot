@@ -1,0 +1,16 @@
+package com.chandru.demo.model;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class CricketCoach implements ICoach {
+
+	@Override
+	public String getDailyWorkOut() {
+		return "practice batting and bowlling";
+	}
+	public CricketCoach() {
+		System.out.println("inside the CricketCoach constructor");
+	}
+
+}

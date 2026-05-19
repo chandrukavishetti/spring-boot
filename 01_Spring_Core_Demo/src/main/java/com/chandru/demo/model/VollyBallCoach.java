@@ -1,0 +1,20 @@
+package com.chandru.demo.model;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Primary
+@Scope("prototype")
+public class VollyBallCoach implements ICoach {
+	@Override
+	public String getDailyWorkOut() {
+		return "practice defecing and smashing in vollyball";
+	}
+
+	public VollyBallCoach() {
+		System.out.println("inside the vollyballcoach constructore");
+	}
+
+}

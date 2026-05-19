@@ -1,0 +1,15 @@
+package com.chandru.demo.DAO;
+
+import java.util.List;
+
+import com.chandru.demo.model.Employee;
+
+public interface EmployeeDAO {
+	public void save(Employee employee);
+
+	public Employee findById(Integer id);
+
+	public List<Employee> findAll();
+
+	public List<Employee> findByAge(Integer age);
+}

@@ -1,0 +1,69 @@
+package com.chandru.demo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.chandru.demo.DAO.StudentDAO;
+import com.chandru.demo.model.Student;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner commandLineRunner(StudentDAO studentDao) {
+
+		return runner -> {
+			// createStudent(studentDao);
+			readStudent(studentDao);
+		};
+	}
+
+	private void readStudent(StudentDAO studentDao) {
+		System.out.println("Fetching the student details from the database");
+
+		Student foundStudnet = studentDao.findById(10);
+
+		System.out.println("found the student : " + foundStudnet);
+
+	}
+
+	private void findAllStudents(StudentDAO studentDao) {
+
+		System.out.println("Fetching all students");
+
+		List<Student> students = studentDao.findAll();
+
+		for (Student tempStudent : students) {
+
+			System.out.println(tempStudent);
+		}
+	}
+
+	private void createStudent(StudentDAO studentDao) {
+
+		try {
+
+			System.out.println("Creating the new student object");
+
+			Student tempStudent = new Student(1, "chandrashekhar");
+
+			System.out.println("Saving the student data");
+
+			studentDao.save(tempStudent);
+
+			System.out.println("Saved successfully");
+
+		} catch (Exception e) {
+
+			System.out.println("Duplicate ID already exists!");
+
+			e.printStackTrace();
+		}
+	}
+}

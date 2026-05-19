@@ -1,0 +1,8 @@
+spring.application.name=02_Hibernate_demo
+
+spring.datasource.url=jdbc:mysql://localhost:3306/spring_student
+spring.datasource.username=root
+spring.datasource.password=cmk26@2004
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true

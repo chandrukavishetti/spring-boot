@@ -1,0 +1,40 @@
+package com.chandru.demo.model;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DemoController {
+
+	// @Autowired
+	private ICoach myCoach;
+	private ICoach mySecondCoach;
+
+	// constructor injection
+	@Autowired
+	public DemoController(@Qualifier("swimCoachCoach") ICoach coach,
+			@Qualifier("swimCoachCoach") ICoach mySecondCoach) {
+		System.out.println("in construtor : " + getClass().getSimpleName());
+		this.myCoach = coach;
+		this.mySecondCoach = mySecondCoach;
+
+	}
+
+	@GetMapping("/check")
+	public String check() {
+		return "comparing the bean myCoach==mySecondCoach : " + (myCoach == mySecondCoach);
+	}
+
+//	// setter injection
+//	@Autowired
+//	public void setCoach(ICoach coach) {
+//		mycoach = coach;
+//	}
+
+	@GetMapping("/dailyworkout")
+	public String getDailyWorkoutResult() {
+		return myCoach.getDailyWorkOut();
+	}
+}

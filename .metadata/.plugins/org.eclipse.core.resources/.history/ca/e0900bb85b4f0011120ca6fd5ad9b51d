@@ -1,0 +1,20 @@
+package com.chandru.demo.model;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class EngineController {
+
+	private Engine engine;
+
+	public EngineController(@Qualifier("petrolEngine") Engine engine) {
+		this.engine = engine;
+	}
+
+	@GetMapping("/enginetype")
+	public String getEngineType() {
+		return engine.getEngine();
+	}
+}

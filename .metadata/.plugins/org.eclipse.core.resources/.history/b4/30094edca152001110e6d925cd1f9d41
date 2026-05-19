@@ -1,0 +1,38 @@
+package com.chandru.demo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.chandru.demo.DAO.StudentDAO;
+import com.chandru.demo.model.Student;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner commandLineRunner(StudentDAO studentDao) {
+
+		return runner -> {
+			createStudent(studentDao);
+		};
+	}
+
+	private void createStudent(StudentDAO studentDao) {
+
+		System.out.println("Creating the new student object");
+
+		Student tempStudent = new Student(1, "chandrashekhar");
+
+		System.out.println("Saving the student data");
+
+		studentDao.save(tempStudent);
+
+		System.out.println("Saved student generated id is : " + tempStudent.getId());
+	}
+}

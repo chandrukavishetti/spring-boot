@@ -1,0 +1,17 @@
+package com.chandru.demo.model;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class PetrolEngine implements Engine {
+
+	@Override
+	public String getEngine() {
+		return "petrol engine needs to add petrol";
+	}
+
+	public PetrolEngine() {
+		System.out.println("hydrozen engine construtor");
+	}
+
+}
