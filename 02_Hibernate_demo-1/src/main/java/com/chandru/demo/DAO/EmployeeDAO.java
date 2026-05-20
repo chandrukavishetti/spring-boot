@@ -19,4 +19,10 @@ public interface EmployeeDAO {
 
 	public List<Employee> findBySalary(Float salary);
 
+	public void update(Employee employee);
+
+	public void updateEmployeeAge(Employee employee);
+
+	public void deleteById(Integer id);
+
 }

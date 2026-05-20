@@ -1,0 +1,82 @@
+package com.chandru.demo.DAO;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.chandru.demo.model.Employee;
+
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+
+@Repository
+public class EmployeeDaoImpl implements EmployeeDAO {
+
+	private EntityManager entityManager;
+
+	@Autowired
+	public EmployeeDaoImpl(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	@Override
+	@Transactional
+	public void save(Employee employee) {
+
+		entityManager.persist(employee);// persist is used of inserting the employee
+	}
+
+	public Employee findById(Integer id) {
+		return entityManager.find(Employee.class, id);
+	}
+
+	public List findByAge(Integer age) {
+		return entityManager.createQuery("from Employee where emp_age=:age", Employee.class).setParameter("age", age)
+				.getResultList();
+	}
+
+	public List<Employee> findByName(String name) {
+
+		return entityManager.createQuery("from Employee where emp_name=:name", Employee.class)
+				.setParameter("name", name).getResultList();
+	}
+
+	public List<Employee> findAll() {
+		return entityManager.createQuery("from Employee", Employee.class).getResultList();
+	}
+
+	@Override
+	public List<Employee> findByCityCode(Integer code) {
+		return entityManager.createQuery("from Employee where city_code=:code", Employee.class)
+				.setParameter("code", code).getResultList();
+	}
+
+	@Override
+	public List<Employee> findBySalary(Float salary) {
+		return entityManager.createQuery("from Employee where emp_salary<:salary", Employee.class)
+				.setParameter("salary", salary).getResultList();
+	}
+
+	@Override
+	@Transactional
+	public void update(Employee employee) {
+		entityManager.merge(employee);// merge is used for updating the records
+
+	}
+
+	@Override
+	@Transactional
+	public void updateEmployeeAge(Employee employee) {
+		entityManager.merge(employee);
+
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		Employee tempEmployee = entityManager.find(Employee.class, id);
+
+		entityManager.remove(tempEmployee);
+
+	}
+}

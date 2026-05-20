@@ -24,7 +24,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 	@Transactional
 	public void save(Employee employee) {
 
-		entityManager.persist(employee);
+		entityManager.persist(employee);// persist is used of inserting the employee
 	}
 
 	public Employee findById(Integer id) {
@@ -56,5 +56,28 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 	public List<Employee> findBySalary(Float salary) {
 		return entityManager.createQuery("from Employee where emp_salary<:salary", Employee.class)
 				.setParameter("salary", salary).getResultList();
+	}
+
+	@Override
+	@Transactional
+	public void update(Employee employee) {
+		entityManager.merge(employee);// merge is used for updating the records
+
+	}
+
+	@Override
+	@Transactional
+	public void updateEmployeeAge(Employee employee) {
+		entityManager.merge(employee);
+
+	}
+
+	@Override
+	@Transactional
+	public void deleteById(Integer id) {
+		Employee tempEmployee = entityManager.find(Employee.class, id);
+
+		entityManager.remove(tempEmployee);// remove is used for deleting
+
 	}
 }

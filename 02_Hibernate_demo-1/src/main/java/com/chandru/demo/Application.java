@@ -27,8 +27,48 @@ public class Application {
 			// readByAge(employeeDao);
 			// readByName(employeeDao);
 			// readByCityCode(employeeDao);
-			readBySalary(employeeDao);
+			// readBySalary(employeeDao);
+			// updateEmployee(employeeDao);
+			// updateEmployeeAge(employeeDao);
+			deleteEmployeeById(employeeDao);
 		};
+	}
+
+	private void deleteEmployeeById(EmployeeDAO employeeDao) {
+		System.out.println("deleting the employee");
+
+		employeeDao.deleteById(1);
+
+		System.out.println("employee deleted successfully");
+
+	}
+
+	private void updateEmployeeAge(EmployeeDAO employeeDao) {
+		System.out.println("Updating the employee age");
+
+		Employee foundEmployee = employeeDao.findById(1);
+
+		foundEmployee.setEmp_age(37);
+
+		employeeDao.updateEmployeeAge(foundEmployee);
+
+		System.out.println("employee Age updated successfully");
+
+		// readEmployee(employeeDao);
+
+	}
+
+	private void updateEmployee(EmployeeDAO employeeDao) {
+		System.out.println("Updating the employee name");
+
+		Employee foundEmployee = employeeDao.findById(1);
+
+		foundEmployee.setEmp_name("virat");
+
+		employeeDao.update(foundEmployee);
+
+		System.out.println("Employee name updated Successfully");
+
 	}
 
 	private void readBySalary(EmployeeDAO employeeDao) {
