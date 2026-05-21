@@ -1,9 +1,0 @@
-package com.chandru.demo.model;
-
-public class VollyBallCoach implements ICoach {
-	@Override
-	public String getDailyWorkOut() {
-		return "practice defecing and smashing in vollyball";
-	}
-
-}

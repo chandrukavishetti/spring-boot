@@ -1,4 +1,4 @@
-GitRepositoriesView.GitDirectories=D\:\\monocept\\.git;
-GitRepositoriesView.GitDirectories.relative=D\:\\monocept\\.git;
+GitRepositoriesView.GitDirectories=D\:\\monocept spring boot\\.git;D\:\\monocept\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;D\:\\monocept\\.git;
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1
