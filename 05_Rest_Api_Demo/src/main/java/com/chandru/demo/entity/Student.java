@@ -17,6 +17,7 @@ import jakarta.validation.constraints.NotNull;
 public class Student {
 
 	@Id
+	@JsonProperty("s_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "std_id")
 	private int s_id;

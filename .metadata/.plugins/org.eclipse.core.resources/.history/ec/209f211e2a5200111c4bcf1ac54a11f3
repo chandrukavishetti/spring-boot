@@ -1,6 +1,0 @@
-package com.chandru.demo.DAO;
-
-public interface StudentDAO {
-	public void save(Student theStudent);
-
-}

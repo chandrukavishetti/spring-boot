@@ -1,110 +1,160 @@
-0:13:04 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl_ClosingAll
-0:13:04 Microsoft.Shutdown.TabStripModel.CloseWebContentses
-0:13:04 Microsoft.Shutdown.TabStripModel.CloseWebContentses_FastShutdown
-0:13:04 Microsoft.Shutdown.TabStripModel.ShouldRunUnloadListenerBeforeClosing_false
-0:13:04 Tab12 RenderProcessGone
-0:13:04 Microsoft.UnloadController.ClearUnloadState
-0:13:04 Microsoft.Shutdown.TabStripModel.RunUnloadListenerBeforeClosing_false
-0:13:04 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl_ClosedAll
-0:13:04 Microsoft.Shutdown.TabStripModel.SendDetachWebContentsNotifications
-0:13:04 Microsoft.UnloadController.ClearUnloadState
-0:13:04 Browser12 Close Tab12 at 0
-0:13:04 Tab12 FinishNav44 ERR_ABORTED
-0:13:04 Tab12 WebContentsDestroyed
-0:13:04 Microsoft.UnloadController.TabStripEmpty
-0:13:04 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
-0:13:04 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
-0:13:04 Microsoft.Shutdown.OnWindowClosing
-0:13:04 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
-0:13:04 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
-0:13:04 Microsoft.Shutdown.OnWindowClosing_MaybeClearBrowsingDataOnExit
-0:13:04 Microsoft.Shutdown.OnWindowClosing_ClearBrowsingDataOnExitNotInProgress
-0:13:04 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
-0:13:04 Widget Closed: BrowserWidget
-0:13:04 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
-0:13:04 Microsoft.Shutdown.OnWindowClosing
-0:13:04 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
-0:13:04 Microsoft.Browser_Removed
-0:13:04 Tab2 StartNav45 #typed
-0:13:04 Tab2 FinishNav45
-0:13:04 Tab2 PageLoad
-0:13:09 Tab2 StartNav46 #typed
-0:13:09 Tab2 FinishNav46
-0:13:09 Tab2 PageLoad
-0:13:37 Microsoft.NewBrowser_Popup
-0:13:37 Microsoft.BrowserList.AddBrowser
-0:13:37 Browser13 Insert active Tab13 at 0
-0:13:37 Tab13 StartNav47 #auto_toplevel
-0:13:37 Tab13 StartNav48 #typed
-0:13:38 Tab13 FinishNav47
-0:13:38 Tab13 PageLoad
-0:13:38 Tab13 FinishNav48
-0:13:38 Tab13 PageLoad
-0:13:38 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
-0:13:38 Microsoft.UnloadController.HasCompletedUnloadProcessing_False
-0:13:38 Microsoft.Shutdown.OnWindowClosing
-0:13:38 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
-0:13:38 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
-0:13:38 Microsoft.Shutdown.TabStripModel.CloseAllTabs
-0:13:38 Microsoft.Shutdown.TabStripModel.CloseTabs
-0:13:38 Microsoft.Shutdown.TabStripModel.CloseTabs_EdgeBeforeClosingAllTabs
-0:13:38 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl
-0:13:38 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl_TabClosable
-0:13:38 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl_ClosingAll
-0:13:38 Microsoft.Shutdown.TabStripModel.CloseWebContentses
-0:13:38 Microsoft.Shutdown.TabStripModel.CloseWebContentses_FastShutdown
-0:13:38 Microsoft.Shutdown.TabStripModel.ShouldRunUnloadListenerBeforeClosing_false
-0:13:38 Tab13 RenderProcessGone
-0:13:38 Microsoft.UnloadController.ClearUnloadState
-0:13:38 Microsoft.Shutdown.TabStripModel.RunUnloadListenerBeforeClosing_false
-0:13:38 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl_ClosedAll
-0:13:38 Microsoft.Shutdown.TabStripModel.SendDetachWebContentsNotifications
-0:13:38 Microsoft.UnloadController.ClearUnloadState
-0:13:38 Browser13 Close Tab13 at 0
-0:13:38 Tab13 WebContentsDestroyed
-0:13:38 Microsoft.UnloadController.TabStripEmpty
-0:13:38 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
-0:13:38 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
-0:13:38 Microsoft.Shutdown.OnWindowClosing
-0:13:38 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
-0:13:38 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
-0:13:38 Microsoft.Shutdown.OnWindowClosing_MaybeClearBrowsingDataOnExit
-0:13:38 Microsoft.Shutdown.OnWindowClosing_ClearBrowsingDataOnExitNotInProgress
-0:13:38 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
-0:13:38 Widget Closed: BrowserWidget
-0:13:38 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
-0:13:38 Microsoft.Shutdown.OnWindowClosing
-0:13:38 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
-0:13:38 Microsoft.Browser_Removed
-0:16:37 Memory Pressure: Moderate
-0:16:47 Memory Pressure: Moderate
-0:16:57 Memory Pressure: Moderate
-0:17:07 Memory Pressure: Moderate
-0:17:17 Memory Pressure: Moderate
-0:17:27 Memory Pressure: Moderate
-0:17:37 Memory Pressure: Moderate
-0:17:47 Memory Pressure: Moderate
-0:17:57 Memory Pressure: Moderate
-0:18:07 Memory Pressure: Moderate
-0:18:17 Memory Pressure: Moderate
-0:18:22 Memory Pressure: None
-0:24:49 Tab2 StartNav49 #typed
-0:24:49 Tab2 FinishNav49
-0:24:49 Tab2 PageLoad
-0:24:52 Tab2 StartNav50 #typed
-0:24:52 Tab2 FinishNav50
-0:24:52 Tab2 PageLoad
-0:25:28 Tab2 StartNav51 #typed
-0:25:28 Tab2 FinishNav51
-0:25:28 Tab2 PageLoad
-0:29:50 Tab2 StartNav52 #typed
-0:29:50 Tab2 FinishNav52
-0:29:50 Tab2 PageLoad
-0:30:00 Tab2 StartNav53 #typed
-0:30:00 Tab2 FinishNav53
-0:30:00 Tab2 PageLoad
-0:30:01 Tab2 StartNav54 #typed
-0:30:01 Tab2 FinishNav54
-0:30:01 Tab2 PageLoad
-0:31:28 Memory Pressure: Moderate
-0:31:33 Memory Pressure: None
+0:15:51 Memory Pressure: Moderate
+0:16:01 Memory Pressure: Moderate
+0:16:11 Memory Pressure: Moderate
+0:16:21 Memory Pressure: Moderate
+0:16:31 Memory Pressure: Moderate
+0:16:41 Memory Pressure: Moderate
+0:16:51 Memory Pressure: Moderate
+0:17:01 Memory Pressure: Moderate
+0:17:11 Memory Pressure: Moderate
+0:17:21 Memory Pressure: Moderate
+0:17:31 Memory Pressure: Moderate
+0:17:41 Memory Pressure: Moderate
+0:17:51 Memory Pressure: Moderate
+0:18:01 Memory Pressure: Moderate
+0:18:11 Memory Pressure: Moderate
+0:18:21 Memory Pressure: Moderate
+0:18:31 Memory Pressure: Moderate
+0:18:41 Memory Pressure: Moderate
+0:18:51 Memory Pressure: Moderate
+0:19:01 Memory Pressure: Moderate
+0:19:11 Memory Pressure: Moderate
+0:19:21 Memory Pressure: Moderate
+0:19:31 Memory Pressure: Moderate
+0:19:41 Memory Pressure: Moderate
+0:19:51 Memory Pressure: Moderate
+0:20:01 Memory Pressure: Moderate
+0:20:11 Memory Pressure: Moderate
+0:20:21 Memory Pressure: Moderate
+0:20:31 Memory Pressure: Moderate
+0:20:41 Memory Pressure: Moderate
+0:20:51 Memory Pressure: Moderate
+0:21:01 Memory Pressure: Moderate
+0:21:11 Memory Pressure: Moderate
+0:21:21 Memory Pressure: Moderate
+0:21:31 Memory Pressure: Moderate
+0:21:41 Memory Pressure: Moderate
+0:21:51 Memory Pressure: Moderate
+0:22:01 Memory Pressure: Moderate
+0:22:11 Memory Pressure: Moderate
+0:22:21 Memory Pressure: Moderate
+0:22:32 Memory Pressure: Moderate
+0:22:42 Memory Pressure: Moderate
+0:22:52 Memory Pressure: Moderate
+0:23:02 Memory Pressure: Moderate
+0:23:12 Memory Pressure: Moderate
+0:23:22 Memory Pressure: Moderate
+0:23:32 Memory Pressure: Moderate
+0:23:42 Memory Pressure: Moderate
+0:23:52 Memory Pressure: Moderate
+0:24:02 Memory Pressure: Moderate
+0:24:12 Memory Pressure: Moderate
+0:24:22 Memory Pressure: Moderate
+0:24:32 Memory Pressure: Moderate
+0:24:42 Memory Pressure: Moderate
+0:24:52 Memory Pressure: None
+0:24:57 Memory Pressure: Moderate
+0:25:07 Memory Pressure: Moderate
+0:25:17 Memory Pressure: Moderate
+0:25:27 Memory Pressure: Moderate
+0:25:37 Memory Pressure: Moderate
+0:25:47 Memory Pressure: Moderate
+0:25:57 Memory Pressure: Moderate
+0:26:07 Memory Pressure: Moderate
+0:26:17 Memory Pressure: Moderate
+0:26:27 Memory Pressure: Moderate
+0:26:37 Memory Pressure: Moderate
+0:26:47 Memory Pressure: Moderate
+0:26:57 Memory Pressure: Moderate
+0:27:07 Memory Pressure: Moderate
+0:27:17 Memory Pressure: Moderate
+0:27:27 Memory Pressure: Moderate
+0:27:37 Memory Pressure: Moderate
+0:27:47 Memory Pressure: Moderate
+0:27:57 Memory Pressure: Moderate
+0:28:07 Memory Pressure: Moderate
+0:28:17 Memory Pressure: Moderate
+0:28:27 Memory Pressure: Moderate
+0:28:37 Memory Pressure: Moderate
+0:28:47 Memory Pressure: Moderate
+0:28:57 Memory Pressure: Moderate
+0:29:07 Memory Pressure: Moderate
+0:29:17 Memory Pressure: Moderate
+0:29:27 Memory Pressure: Moderate
+0:29:37 Memory Pressure: Moderate
+0:29:47 Memory Pressure: Moderate
+0:29:57 Memory Pressure: Moderate
+0:30:07 Memory Pressure: Moderate
+0:30:17 Memory Pressure: Moderate
+0:30:27 Memory Pressure: Moderate
+0:30:37 Memory Pressure: Moderate
+0:30:47 Memory Pressure: Moderate
+0:30:57 Memory Pressure: Moderate
+0:31:07 Memory Pressure: Moderate
+0:31:17 Memory Pressure: None
+0:33:48 Memory Pressure: Moderate
+0:33:58 Memory Pressure: Moderate
+0:34:08 Memory Pressure: Moderate
+0:34:18 Memory Pressure: None
+0:41:28 Memory Pressure: Moderate
+0:41:38 Memory Pressure: Moderate
+0:41:48 Memory Pressure: Moderate
+0:41:59 Memory Pressure: Moderate
+0:42:09 Memory Pressure: Moderate
+0:42:19 Memory Pressure: Moderate
+0:42:29 Memory Pressure: Moderate
+0:42:39 Memory Pressure: Moderate
+0:42:49 Memory Pressure: Moderate
+0:42:59 Memory Pressure: Moderate
+0:43:09 Memory Pressure: Moderate
+0:43:19 Memory Pressure: Moderate
+0:43:29 Memory Pressure: Moderate
+0:43:39 Memory Pressure: Moderate
+0:43:49 Memory Pressure: Moderate
+0:43:59 Memory Pressure: Moderate
+0:44:09 Memory Pressure: Moderate
+0:44:19 Memory Pressure: Moderate
+0:44:29 Memory Pressure: Moderate
+0:44:39 Memory Pressure: Moderate
+0:44:49 Memory Pressure: Moderate
+0:44:59 Memory Pressure: Moderate
+0:45:09 Memory Pressure: Moderate
+0:45:19 Memory Pressure: Moderate
+0:45:29 Memory Pressure: Moderate
+0:45:39 Memory Pressure: Moderate
+0:45:49 Memory Pressure: Moderate
+0:45:59 Memory Pressure: Moderate
+0:46:09 Memory Pressure: Moderate
+0:46:19 Memory Pressure: None
+0:46:24 Memory Pressure: Moderate
+0:46:34 Memory Pressure: None
+0:46:39 Memory Pressure: Moderate
+0:46:49 Memory Pressure: Moderate
+0:46:59 Memory Pressure: Moderate
+0:47:09 Memory Pressure: None
+0:48:24 Memory Pressure: Moderate
+0:48:34 Memory Pressure: Moderate
+0:48:44 Memory Pressure: Moderate
+0:48:54 Memory Pressure: Moderate
+0:48:59 Memory Pressure: None
+0:49:04 Memory Pressure: Moderate
+0:49:14 Memory Pressure: Moderate
+0:49:24 Memory Pressure: Moderate
+0:49:34 Memory Pressure: Moderate
+0:49:44 Memory Pressure: Moderate
+0:49:54 Memory Pressure: None
+0:50:09 Memory Pressure: Moderate
+0:50:19 Memory Pressure: Moderate
+0:50:29 Memory Pressure: None
+0:50:44 Memory Pressure: Moderate
+0:50:49 Memory Pressure: None
+0:50:54 Memory Pressure: Moderate
+0:50:59 Memory Pressure: None
+0:51:09 Memory Pressure: Moderate
+0:51:19 Memory Pressure: None
+1:09:01 Memory Pressure: Moderate
+1:09:06 Memory Pressure: None
+1:10:36 Memory Pressure: Moderate
+1:10:46 Memory Pressure: Moderate
+1:10:56 Memory Pressure: Moderate
+1:11:06 Memory Pressure: None
