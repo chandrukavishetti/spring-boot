@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-@RestControllerAdvice
+@RestControllerAdvice // this annotaion is going to tell that this is the globle exception class
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(StudentNotFoundException.class)

@@ -1,7 +1,0 @@
-package com.chandru.demo.DAO;
-
-import com.chandru.demo.model.Employee;
-
-public interface EmployeeDAO {
-	public void save(Employee employee);
-}
