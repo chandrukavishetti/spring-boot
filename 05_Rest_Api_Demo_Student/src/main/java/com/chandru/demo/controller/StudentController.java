@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chandru.demo.DTO.PageResponseDTO;
 import com.chandru.demo.DTO.StudentRequestDTO;
 import com.chandru.demo.DTO.StudentResponseDTO;
+import com.chandru.demo.DTO.UpdateStudentDeptDTO;
+import com.chandru.demo.DTO.UpdateStudentNameDTO;
 import com.chandru.demo.entity.Student;
 import com.chandru.demo.service.StudentService;
 
@@ -57,27 +59,30 @@ public class StudentController {
 	}
 
 	@PostMapping("/createMultiple")
-	public List<Student> createMultipleStudents(@RequestBody List<Student> students) {
+	public List<StudentResponseDTO> createMultipleStudents(@RequestBody List<StudentRequestDTO> students) {
 
 		return studentService.createMultipleStudents(students);
 	}
 
 	@GetMapping("/{id}")
-	public Student getStudentById(@PathVariable int id) {
+	public StudentResponseDTO getStudentById(@PathVariable int id) {
 
 		return studentService.getStudentById(id);
 	}
 
 	@PutMapping("/updateName/{id}")
-	public Student updateStudentName(@PathVariable int id, @RequestBody Student student) {
+	public StudentResponseDTO updateStudentName(@PathVariable int id, @RequestBody UpdateStudentNameDTO dto) {
+
+		Student student = new Student();
+		student.setSName(dto.getSName());
 
 		return studentService.updateStudentName(id, student);
 	}
 
 	@PutMapping("/updateDept/{id}")
-	public Student updateStudentDept(@PathVariable int id, @RequestBody Student student) {
+	public StudentResponseDTO updateStudentDept(@PathVariable int id, @RequestBody UpdateStudentDeptDTO dto) {
 
-		return studentService.updateStudentDept(id, student);
+		return studentService.updateStudentDept(id, dto);
 	}
 
 	@PutMapping("/updateDeptAndAge/{id}")

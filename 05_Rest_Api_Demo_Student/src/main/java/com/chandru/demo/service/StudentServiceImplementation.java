@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.query.Page;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.chandru.demo.DTO.PageResponseDTO;
 import com.chandru.demo.DTO.StudentRequestDTO;
 import com.chandru.demo.DTO.StudentResponseDTO;
+import com.chandru.demo.DTO.UpdateStudentDeptDTO;
 import com.chandru.demo.Exception.StudentNotFoundException;
 import com.chandru.demo.entity.Student;
 import com.chandru.demo.repository.StudentRepository;
@@ -37,7 +37,7 @@ public class StudentServiceImplementation implements StudentService {
 
 		Student savedStudent = studentRepository.save(student);
 
-		return modelMapper.map(savedStudent, StudentResponseDTO.class);
+		return modelMapper.map(savedStudent, StudentResponseDTO.class);// Entity -> DTO
 	}
 
 //		Student student = convertToEntity(studentRequestDto);
@@ -51,17 +51,25 @@ public class StudentServiceImplementation implements StudentService {
 //	public Student createStudent(Student student) {
 //		return studentRepository.save(student);
 //	}
-
 	@Override
-	public List<Student> createMultipleStudents(List<Student> students) {
+	public List<StudentResponseDTO> createMultipleStudents(List<StudentRequestDTO> studentRequestDtos) {
 
-		return studentRepository.saveAll(students);
+		// DTO List -> Entity List
+		List<Student> students = studentRequestDtos.stream().map(dto -> modelMapper.map(dto, Student.class)).toList();
+
+		// Save all students
+		List<Student> savedStudents = studentRepository.saveAll(students);
+
+		// Entity List -> Response DTO List
+		return savedStudents.stream().map(student -> modelMapper.map(student, StudentResponseDTO.class)).toList();
 	}
 
 	@Override
-	public Student getStudentById(int id) {
+	public StudentResponseDTO getStudentById(int id) {
 
-		return studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+		Student student = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+
+		return modelMapper.map(student, StudentResponseDTO.class);
 	}
 
 	@Override
@@ -77,23 +85,27 @@ public class StudentServiceImplementation implements StudentService {
 //	}
 
 	@Override
-	public Student updateStudentName(int id, Student student) {
+	public StudentResponseDTO updateStudentName(int id, Student student) {
 
 		Student existingStudent = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
 
-		existingStudent.setS_name(student.getS_name());
+		existingStudent.setSName(student.getSName());
 
-		return studentRepository.save(existingStudent);
+		Student updatedStudent = studentRepository.save(existingStudent);
+
+		return modelMapper.map(updatedStudent, StudentResponseDTO.class);
 	}
 
 	@Override
-	public Student updateStudentDept(int id, Student student) {
+	public StudentResponseDTO updateStudentDept(int id, UpdateStudentDeptDTO dto) {
 
 		Student existingStudent = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
 
-		existingStudent.setS_department(student.getS_department());
+		existingStudent.setSDepartment(dto.getSDepartment());
 
-		return studentRepository.save(existingStudent);
+		Student updatedStudent = studentRepository.save(existingStudent);
+
+		return modelMapper.map(updatedStudent, StudentResponseDTO.class);
 	}
 
 	@Override
@@ -101,8 +113,8 @@ public class StudentServiceImplementation implements StudentService {
 
 		Student existingStudent = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
 
-		existingStudent.setS_age(student.getS_age());
-		existingStudent.setS_department(student.getS_department());
+		existingStudent.setSAge(student.getSAge());
+		existingStudent.setSDepartment(student.getSDepartment());
 
 		return studentRepository.save(existingStudent);
 	}
@@ -123,15 +135,15 @@ public class StudentServiceImplementation implements StudentService {
 		Student existingStudent = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
 
 		if (updatedData.containsKey("s_name")) {
-			existingStudent.setS_name((String) updatedData.get("s_name"));
+			existingStudent.setSName((String) updatedData.get("s_name"));
 		}
 
 		if (updatedData.containsKey("s_age")) {
-			existingStudent.setS_age((Integer) updatedData.get("s_age"));
+			existingStudent.setSAge((Integer) updatedData.get("s_age"));
 		}
 
 		if (updatedData.containsKey("s_dept")) {
-			existingStudent.setS_department((String) updatedData.get("s_dept"));
+			existingStudent.setSDepartment((String) updatedData.get("s_dept"));
 		}
 
 		return studentRepository.save(existingStudent);

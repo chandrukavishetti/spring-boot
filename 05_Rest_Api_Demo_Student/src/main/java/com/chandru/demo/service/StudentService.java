@@ -6,21 +6,23 @@ import java.util.Map;
 import com.chandru.demo.DTO.PageResponseDTO;
 import com.chandru.demo.DTO.StudentRequestDTO;
 import com.chandru.demo.DTO.StudentResponseDTO;
+import com.chandru.demo.DTO.UpdateStudentDeptDTO;
 import com.chandru.demo.entity.Student;
 
 public interface StudentService {
 
-	// Student createStudent(Student student);
+	StudentResponseDTO createStudent(StudentRequestDTO dto);
 
-	List<Student> createMultipleStudents(List<Student> students);
+//	List<Student> createMultipleStudents(List<StudentRequestDTO> students);
+	List<StudentResponseDTO> createMultipleStudents(List<StudentRequestDTO> studentRequestDtos);
 
-	Student getStudentById(int id);
+	StudentResponseDTO getStudentById(int id);
 
-	// List<Student> getAllStudents();
+	List<StudentResponseDTO> getAllStudents();
 
-	Student updateStudentName(int id, Student student);
+	StudentResponseDTO updateStudentName(int id, Student student);
 
-	Student updateStudentDept(int id, Student student);
+	StudentResponseDTO updateStudentDept(int id, UpdateStudentDeptDTO dto);
 
 	Student updateStudentDeptAndAge(int id, Student student);
 
@@ -28,10 +30,5 @@ public interface StudentService {
 
 	Student updatePartially(int id, Map<String, Object> updatedData);
 
-	StudentResponseDTO createStudent(StudentRequestDTO dto);
-
-	List<StudentResponseDTO> getAllStudents();
-
 	PageResponseDTO<StudentResponseDTO> getAllStudentsWithPagination(int pageNumber, int pageSize);
-
 }
