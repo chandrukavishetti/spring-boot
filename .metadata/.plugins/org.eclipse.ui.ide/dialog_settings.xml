@@ -83,6 +83,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\monocept spring boot\many-to-many-student-course-api"/>
+			<item value="D:\monocept spring boot\08_One_To_Many_Mapping_With_Swagger_1"/>
 			<item value="D:\monocept\ServletAssignment"/>
 			<item value="D:\monocept\Cookies-and-Sessions"/>
 		</list>

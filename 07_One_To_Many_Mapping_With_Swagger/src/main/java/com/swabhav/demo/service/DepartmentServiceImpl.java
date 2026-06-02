@@ -1,19 +1,9 @@
 package com.swabhav.demo.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.swabhav.demo.dto.DepartmentRequestDto;
 import com.swabhav.demo.dto.DepartmentResponseDto;
 import com.swabhav.demo.dto.EmployeeRequestDto;
+import com.swabhav.demo.dto.EmployeeResponseDto;
 import com.swabhav.demo.dto.PageResponseDto;
 import com.swabhav.demo.exception.DuplicateResourceException;
 import com.swabhav.demo.exception.ResourceNotFoundException;
@@ -21,11 +11,20 @@ import com.swabhav.demo.model.Department;
 import com.swabhav.demo.model.Employee;
 import com.swabhav.demo.repository.DepartmentRepository;
 import com.swabhav.demo.repository.EmployeeRepository;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,60 +32,56 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	private final DepartmentRepository departmentRepository;
 	private final EmployeeRepository employeeRepository;
-	private final ModelMapper modelMapper;
-	private static final Logger logger = LoggerFactory.getLogger(DepartmentServiceImpl.class);
 
 	@Override
 	@Transactional
 	public DepartmentResponseDto createDepartment(DepartmentRequestDto requestDto) {
 
-		logger.info("Creating department with name: {}", requestDto.getDepartmentName());
-
 		if (departmentRepository.existsByDepartmentName(requestDto.getDepartmentName())) {
-
-			logger.error("Department already exists: {}", requestDto.getDepartmentName());
-
 			throw new DuplicateResourceException("Department name already exists: " + requestDto.getDepartmentName());
 		}
 
+		validateDuplicateEmailsInsideRequest(requestDto.getEmployees());
 		validateEmployeeEmailsForCreate(requestDto.getEmployees());
 
 		try {
-
-			Department department = modelMapper.map(requestDto, Department.class);
+			Department department = new Department();
+			department.setDepartmentName(requestDto.getDepartmentName().trim());
+			department.setLocation(requestDto.getLocation().trim());
 
 			attachEmployeesToDepartment(department, requestDto.getEmployees());
 
 			Department savedDepartment = departmentRepository.save(department);
-
-			logger.info("Department created successfully with id: {}", savedDepartment.getId());
-
-			return modelMapper.map(savedDepartment, DepartmentResponseDto.class);
+			return mapToDepartmentResponseDto(savedDepartment);
 
 		} catch (DataIntegrityViolationException ex) {
-
-			logger.error("Duplicate data found while creating department");
-
-			throw new DuplicateResourceException(
-					"Duplicate data found. Please check department name or employee email.");
+			throw new DuplicateResourceException("Duplicate department name or employee email already exists.");
 		}
-	} // Rest of the methods remain same (getAll, pagination, update, delete, etc.)
+	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<DepartmentResponseDto> getAllDepartments() {
 		List<Department> departments = departmentRepository.findAll();
-		return departments.stream().map(dept -> modelMapper.map(dept, DepartmentResponseDto.class))
+
+		return departments.stream()
+				.map(this::mapToDepartmentResponseDto)
 				.collect(Collectors.toList());
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public PageResponseDto<DepartmentResponseDto> getAllDepartmentsWithPagination(int pageNumber, int pageSize) {
+
 		validatePagination(pageNumber, pageSize);
+
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);
 		Page<Department> departmentPage = departmentRepository.findAll(pageable);
 
-		List<DepartmentResponseDto> content = departmentPage.getContent().stream()
-				.map(dept -> modelMapper.map(dept, DepartmentResponseDto.class)).collect(Collectors.toList());
+		List<DepartmentResponseDto> content = departmentPage.getContent()
+				.stream()
+				.map(this::mapToDepartmentResponseDto)
+				.collect(Collectors.toList());
 
 		PageResponseDto<DepartmentResponseDto> pageResponse = new PageResponseDto<>();
 		pageResponse.setContent(content);
@@ -100,102 +95,175 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public DepartmentResponseDto getDepartmentById(Long id) {
-
-		logger.info("Fetching department with id: {}", id);
-
 		Department department = findDepartmentById(id);
-
-		return modelMapper.map(department, DepartmentResponseDto.class);
+		return mapToDepartmentResponseDto(department);
 	}
 
 	@Override
 	@Transactional
 	public DepartmentResponseDto updateDepartment(Long id, DepartmentRequestDto requestDto) {
 
-		logger.info("Updating department with id: {}", id);
-
-		Department existing = findDepartmentById(id);
+		Department existingDepartment = findDepartmentById(id);
 
 		if (departmentRepository.existsByDepartmentNameAndIdNot(requestDto.getDepartmentName(), id)) {
-
-			logger.error("Duplicate department name found: {}", requestDto.getDepartmentName());
-
 			throw new DuplicateResourceException("Department name already exists: " + requestDto.getDepartmentName());
 		}
 
-		existing.setDepartmentName(requestDto.getDepartmentName());
-		existing.setLocation(requestDto.getLocation());
+		validateDuplicateEmailsInsideRequest(requestDto.getEmployees());
+		validateEmployeeEmailsForUpdate(requestDto.getEmployees(), id);
 
-		existing.getEmployees().clear();
+		try {
+			existingDepartment.setDepartmentName(requestDto.getDepartmentName().trim());
+			existingDepartment.setLocation(requestDto.getLocation().trim());
 
-		attachEmployeesToDepartment(existing, requestDto.getEmployees());
+			updateEmployees(existingDepartment, requestDto.getEmployees());
 
-		Department updated = departmentRepository.save(existing);
+			Department updatedDepartment = departmentRepository.save(existingDepartment);
+			return mapToDepartmentResponseDto(updatedDepartment);
 
-		logger.info("Department updated successfully with id: {}", id);
-
-		return modelMapper.map(updated, DepartmentResponseDto.class);
+		} catch (DataIntegrityViolationException ex) {
+			throw new DuplicateResourceException("Duplicate department name or employee email already exists.");
+		}
 	}
 
 	@Override
 	@Transactional
 	public void deleteDepartment(Long id) {
-
-		logger.info("Deleting department with id: {}", id);
-
 		Department department = findDepartmentById(id);
-
 		departmentRepository.delete(department);
-
-		logger.info("Department deleted successfully with id: {}", id);
 	}
-	// ==================== Private Helpers ====================
 
 	private Department findDepartmentById(Long id) {
-
-		return departmentRepository.findById(id).orElseThrow(() -> {
-
-			logger.error("Department not found with id: {}", id);
-
-			return new ResourceNotFoundException("Department not found with id: " + id);
-		});
+		return departmentRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + id));
 	}
 
-	private void attachEmployeesToDepartment(Department department, List<EmployeeRequestDto> dtos) {
-		for (EmployeeRequestDto dto : dtos) {
-			Employee employee = modelMapper.map(dto, Employee.class);
+	private void attachEmployeesToDepartment(Department department, List<EmployeeRequestDto> employeeDtos) {
+
+		for (EmployeeRequestDto dto : employeeDtos) {
+			Employee employee = new Employee();
+			employee.setEmployeeName(dto.getEmployeeName().trim());
+			employee.setEmail(dto.getEmail().trim());
+			employee.setSalary(dto.getSalary());
+
 			department.addEmployee(employee);
+		}
+	}
+
+	private void updateEmployees(Department department, List<EmployeeRequestDto> employeeDtos) {
+
+		Set<String> requestEmails = employeeDtos.stream()
+				.map(dto -> normalizeEmail(dto.getEmail()))
+				.collect(Collectors.toSet());
+
+		List<Employee> employeesToRemove = department.getEmployees()
+				.stream()
+				.filter(employee -> !requestEmails.contains(normalizeEmail(employee.getEmail())))
+				.collect(Collectors.toList());
+
+		for (Employee employee : employeesToRemove) {
+			department.removeEmployee(employee);
+		}
+
+		Map<String, Employee> existingEmployeesByEmail = department.getEmployees()
+				.stream()
+				.collect(Collectors.toMap(
+						employee -> normalizeEmail(employee.getEmail()),
+						Function.identity()
+				));
+
+		for (EmployeeRequestDto dto : employeeDtos) {
+
+			String emailKey = normalizeEmail(dto.getEmail());
+			Employee employee = existingEmployeesByEmail.get(emailKey);
+
+			if (employee == null) {
+				employee = new Employee();
+				employee.setEmail(dto.getEmail().trim());
+				employee.setEmployeeName(dto.getEmployeeName().trim());
+				employee.setSalary(dto.getSalary());
+
+				department.addEmployee(employee);
+			} else {
+				employee.setEmployeeName(dto.getEmployeeName().trim());
+				employee.setSalary(dto.getSalary());
+			}
+		}
+	}
+
+	private void validateDuplicateEmailsInsideRequest(List<EmployeeRequestDto> employees) {
+
+		Set<String> emails = new HashSet<>();
+
+		for (EmployeeRequestDto employee : employees) {
+			String email = normalizeEmail(employee.getEmail());
+
+			if (!emails.add(email)) {
+				throw new DuplicateResourceException("Duplicate employee email in request: " + employee.getEmail());
+			}
 		}
 	}
 
 	private void validateEmployeeEmailsForCreate(List<EmployeeRequestDto> employees) {
 
-		for (EmployeeRequestDto emp : employees) {
-
-			if (employeeRepository.existsByEmail(emp.getEmail())) {
-
-				logger.error("Duplicate employee email found: {}", emp.getEmail());
-
-				throw new DuplicateResourceException("Employee email already exists: " + emp.getEmail());
+		for (EmployeeRequestDto employee : employees) {
+			if (employeeRepository.existsByEmailIgnoreCase(employee.getEmail())) {
+				throw new DuplicateResourceException("Employee email already exists: " + employee.getEmail());
 			}
 		}
 	}
 
 	private void validateEmployeeEmailsForUpdate(List<EmployeeRequestDto> employees, Long departmentId) {
-		for (EmployeeRequestDto emp : employees) {
-			if (employeeRepository.existsByEmail(emp.getEmail())) {
-				throw new DuplicateResourceException("Employee email already exists: " + emp.getEmail());
+
+		for (EmployeeRequestDto employee : employees) {
+			if (employeeRepository.existsByEmailIgnoreCaseAndDepartment_IdNot(employee.getEmail(), departmentId)) {
+				throw new DuplicateResourceException("Employee email already exists in another department: " + employee.getEmail());
 			}
 		}
 	}
 
 	private void validatePagination(int pageNumber, int pageSize) {
+
 		if (pageNumber < 0) {
 			throw new IllegalArgumentException("Page number must not be negative");
 		}
+
 		if (pageSize <= 0 || pageSize > 100) {
 			throw new IllegalArgumentException("Page size must be between 1 and 100");
 		}
+	}
+
+	private String normalizeEmail(String email) {
+		return email == null ? null : email.trim().toLowerCase();
+	}
+
+	private DepartmentResponseDto mapToDepartmentResponseDto(Department department) {
+
+		DepartmentResponseDto responseDto = new DepartmentResponseDto();
+		responseDto.setId(department.getId());
+		responseDto.setDepartmentName(department.getDepartmentName());
+		responseDto.setLocation(department.getLocation());
+
+		List<EmployeeResponseDto> employees = department.getEmployees()
+				.stream()
+				.map(this::mapToEmployeeResponseDto)
+				.collect(Collectors.toList());
+
+		responseDto.setEmployees(employees);
+
+		return responseDto;
+	}
+
+	private EmployeeResponseDto mapToEmployeeResponseDto(Employee employee) {
+
+		EmployeeResponseDto responseDto = new EmployeeResponseDto();
+		responseDto.setId(employee.getId());
+		responseDto.setEmployeeName(employee.getEmployeeName());
+		responseDto.setEmail(employee.getEmail());
+		responseDto.setSalary(employee.getSalary());
+
+		return responseDto;
 	}
 }
