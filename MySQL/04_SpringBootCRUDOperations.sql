@@ -1,0 +1,2 @@
+use empdb;
+show tables;

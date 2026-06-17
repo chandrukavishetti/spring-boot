@@ -83,6 +83,13 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\Cloudinary implementation\cloudinary"/>
+			<item value="D:\Cloudinary implementation\Clodinary"/>
+			<item value="D:\monocept backend project\student-verification-app"/>
+			<item value="D:\monocept backend project\insurance-policy-claim-management-system"/>
+			<item value="D:\monocept spring boot\06_Employee_One_To_Many_Project2"/>
+			<item value="D:\monocept spring boot\33-SpringOneToManyJWTTokenWala"/>
+			<item value="D:\monocept spring boot\many-to-many-student-course-api-jwt"/>
 			<item value="D:\monocept spring boot\many-to-many-student-course-api"/>
 			<item value="D:\monocept spring boot\08_One_To_Many_Mapping_With_Swagger_1"/>
 			<item value="D:\monocept\ServletAssignment"/>
@@ -101,5 +108,13 @@
 		<item key="DIALOG_WIDTH" value="500"/>
 		<item key="DIALOG_HEIGHT" value="389"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="366"/>
+		<item key="DIALOG_Y_ORIGIN" value="185"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
 	</section>
 </section>
