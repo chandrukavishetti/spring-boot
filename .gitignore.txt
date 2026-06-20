@@ -5,3 +5,8 @@ target/
 .classpath
 .idea/
 *.log
+
+**/.metadata/
+**/target
+**/env.properties
+D:\monocept spring boot\09_Insurance_Project_Front_End\env.properties

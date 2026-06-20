@@ -1,0 +1,5 @@
+package com.swabhav.demo.repository;
+
+public interface CourseDetailRepository {
+
+}

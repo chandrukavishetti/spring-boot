@@ -1,0 +1,30 @@
+package com.chandru.demo.dto;
+
+import com.chandru.demo.enums.Gender;
+import com.chandru.demo.enums.Role;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class EmployeeRequestDTO {
+
+	private String employeeName;
+	
+	private String employeeEmail;
+	
+	private String employeePhone;
+	
+	private Gender employeeGender;
+	
+	private float employeeSalary;
+	
+	private Role employeeRole;
+	
+	private int employeeExperience;
+}
