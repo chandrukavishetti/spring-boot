@@ -1,5 +1,0 @@
-package com.chandru.demo.dto;
-
-public class StudentResponseDTO {
-
-}

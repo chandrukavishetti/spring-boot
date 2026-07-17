@@ -83,6 +83,11 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\monocept microservices\microservice_swabhav_training\14_service-registry-microservices"/>
+			<item value="D:\monocept microservices\microservice_swabhav_training\13_department-service_Microservices"/>
+			<item value="D:\monocept microservices\microservice_swabhav_training\12_employee-service_Microservices"/>
+			<item value="D:\monocept microservices\13_department-service_Microservices"/>
+			<item value="D:\monocept microservices\12_employee-service_Microservices"/>
 			<item value="D:\Cloudinary implementation\cloudinary"/>
 			<item value="D:\Cloudinary implementation\Clodinary"/>
 			<item value="D:\monocept backend project\student-verification-app"/>
